@@ -1,4 +1,4 @@
-// biome-ignore-all lint/suspicious/noDebugger: reason
+// biome-ignore-all lint: This is a generated file
 
 import type {
   GraphQLResolveInfo,
