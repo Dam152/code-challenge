@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { CardMovie } from '@/components/molecules/CardMovie';
-import { useFavoriteList } from '@/hooks/use-favorite-list';
+import { CardMovie } from "@/components/molecules/CardMovie";
+import { useFavoriteList } from "@/hooks/use-favorite-list";
 
 export function FavoriteTemplate() {
   const { favorites } = useFavoriteList();
