@@ -1,9 +1,9 @@
-import { CardMovie } from '@/components/molecules/CardMovie';
-import { PageHeader } from '@/components/molecules/PageHeader';
-import { Pagination } from '@/components/molecules/Pagination/Pagination';
-import { getCharacters } from '@/lib/actions/characters';
-import { Character } from '@/types/generated';
-import { notFound } from 'next/navigation';
+import { notFound } from "next/navigation";
+import { CardMovie } from "@/components/molecules/CardMovie";
+import { PageHeader } from "@/components/molecules/PageHeader";
+import { Pagination } from "@/components/molecules/Pagination/Pagination";
+import { getCharacters } from "@/lib/actions/characters";
+import type { Character } from "@/types/generated";
 
 export default async function Home({
   searchParams,
@@ -22,7 +22,7 @@ export default async function Home({
 
   if (
     searchParamsResolved.page &&
-    (isNaN(currentPage) ||
+    (Number.isNaN(currentPage) ||
       currentPage < 1 ||
       currentPage > (data.characters?.info?.pages || 1))
   ) {
@@ -32,9 +32,9 @@ export default async function Home({
   return (
     <div className="w-full grid gap-[19px]">
       <PageHeader
-        text={'MOVIES'}
-        labelLink={'Favorites'}
-        href={'/favorites'}
+        text={"MOVIES"}
+        labelLink={"Favorites"}
+        href={"/favorites"}
         icon="next"
       />
 

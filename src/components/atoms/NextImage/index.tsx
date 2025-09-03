@@ -1,1 +1,1 @@
-export * from './NextImage';
+export * from "./NextImage";

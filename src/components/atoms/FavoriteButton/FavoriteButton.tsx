@@ -1,14 +1,14 @@
-'use client';
-import { cn } from '@/lib/utils/cn';
-import { ComponentProps } from 'react';
-import { Icon } from '../Icon';
+"use client";
+import type { ComponentProps } from "react";
+import { cn } from "@/lib/utils/cn";
+import { Icon } from "../Icon";
 
-type FavoriteButtonProps = ComponentProps<'button'> & {
+type FavoriteButtonProps = ComponentProps<"button"> & {
   className?: string;
 };
 
 export function FavoriteButton({
-  className = '',
+  className = "",
   ...props
 }: FavoriteButtonProps) {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -20,7 +20,7 @@ export function FavoriteButton({
     <button
       className={cn(
         className,
-        'absolute top-[6px] right-[11px] cursor-pointer disabled:cursor-not-allowed z-20'
+        "absolute top-[6px] right-[11px] cursor-pointer disabled:cursor-not-allowed z-20",
       )}
       {...props}
       onClick={handleClick}

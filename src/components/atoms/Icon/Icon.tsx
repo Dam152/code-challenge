@@ -1,8 +1,10 @@
+// biome-ignore-file lint/security/noDangerouslySetInnerHtml: This component safely handles SVG content from trusted sources
 'use client';
-import React, { useState, useEffect } from 'react';
-import { iconMap } from '@/lib/utils/iconMap';
-import type { IconType } from '@/lib/utils/iconMap';
+import type React from 'react';
+import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils/cn';
+import type { IconType } from '@/lib/utils/iconMap';
+import { iconMap } from '@/lib/utils/iconMap';
 
 type IconProps = React.SVGProps<SVGSVGElement> & {
   type: IconType;

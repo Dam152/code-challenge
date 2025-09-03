@@ -1,8 +1,8 @@
-'use server';
+"use server";
 
-import { GET_CHARACTERS } from '@/queries/characters';
-import { getClient } from '../apollo-client';
-import { GetCharactersQuery } from '@/types/generated';
+import { GET_CHARACTERS } from "@/queries/characters";
+import type { GetCharactersQuery } from "@/types/generated";
+import { getClient } from "../apollo-client";
 
 export async function getCharacters(currentPage: number, filter?: string) {
   const { data } = await getClient().query<GetCharactersQuery>({

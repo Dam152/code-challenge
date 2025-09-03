@@ -1,13 +1,13 @@
-import fs from 'fs';
-import path from 'path';
+import fs from "node:fs";
+import path from "node:path";
 
-const ICONS_DIR = path.resolve(process.cwd(), 'public', 'icons');
+const ICONS_DIR = path.resolve(process.cwd(), "public", "icons");
 const OUTPUT_FILE = path.resolve(
   process.cwd(),
-  'src',
-  'lib',
-  'utils',
-  'iconMap.ts'
+  "src",
+  "lib",
+  "utils",
+  "iconMap.ts",
 );
 
 function generateIconMap(): void {
@@ -23,11 +23,11 @@ function generateIconMap(): void {
 
     const iconFiles = fs
       .readdirSync(ICONS_DIR)
-      .filter((file) => path.extname(file) === '.svg')
+      .filter((file) => path.extname(file) === ".svg")
       .map((file) => file.toLowerCase());
 
     if (iconFiles.length === 0) {
-      console.warn('Nessuna icona SVG trovata. Rimuovo il file di mapping.');
+      console.warn("Nessuna icona SVG trovata. Rimuovo il file di mapping.");
 
       const utilsDir = path.dirname(OUTPUT_FILE);
       try {
@@ -37,8 +37,8 @@ function generateIconMap(): void {
         }
       } catch (error) {
         console.error(
-          'Errore durante la rimozione della cartella utils:',
-          error
+          "Errore durante la rimozione della cartella utils:",
+          error,
         );
       }
 
@@ -47,8 +47,8 @@ function generateIconMap(): void {
 
     const iconMap = iconFiles.reduce((map: Record<string, string>, file) => {
       const iconName = path
-        .basename(file, '.svg')
-        .replace(/[-\s]+(.)?/g, (_, c) => (c ? c.toUpperCase() : ''));
+        .basename(file, ".svg")
+        .replace(/[-\s]+(.)?/g, (_, c) => (c ? c.toUpperCase() : ""));
 
       map[iconName] = `/icons/${file}`;
       return map;
@@ -62,20 +62,20 @@ function generateIconMap(): void {
     let existingIconMap: Record<string, string> = {};
     try {
       if (fs.existsSync(OUTPUT_FILE)) {
-        const existingContent = fs.readFileSync(OUTPUT_FILE, 'utf-8');
+        const existingContent = fs.readFileSync(OUTPUT_FILE, "utf-8");
         const match = existingContent.match(
-          /export const iconMap = (.*) as const/
+          /export const iconMap = (.*) as const/,
         );
         if (match) {
           existingIconMap = JSON.parse(match[1]);
         }
       }
     } catch (error) {
-      console.error('Errore nella lettura del mapping esistente:', error);
+      console.error("Errore nella lettura del mapping esistente:", error);
     }
 
     Object.keys(existingIconMap).forEach((iconName) => {
-      const iconPath = existingIconMap[iconName].replace('/icons/', '');
+      const iconPath = existingIconMap[iconName].replace("/icons/", "");
       const fullIconPath = path.resolve(ICONS_DIR, iconPath);
 
       if (!fs.existsSync(fullIconPath)) {
@@ -87,15 +87,15 @@ function generateIconMap(): void {
       OUTPUT_FILE,
       `export const iconMap = ${JSON.stringify(iconMap, null, 2)} as const;
 
-export type IconType = keyof typeof iconMap;`
+export type IconType = keyof typeof iconMap;`,
     );
 
     console.log(`Mapping delle icone generato con successo!`);
-    console.log(`Icone trovate: ${Object.keys(iconMap).join(', ')}`);
+    console.log(`Icone trovate: ${Object.keys(iconMap).join(", ")}`);
   } catch (error) {
     console.error(
-      'Errore durante la generazione del mapping delle icone:',
-      error
+      "Errore durante la generazione del mapping delle icone:",
+      error,
     );
     process.exit(1);
   }
