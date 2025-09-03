@@ -32,7 +32,7 @@ export function CardMovie({ card }: CardMovieProps) {
           {card?.status} • {card?.species}
         </Text>
       </div>
-      <FavoriteButton />
+      <FavoriteButton character={card as Character} />
     </Link>
   );
 }

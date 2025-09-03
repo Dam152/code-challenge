@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { FavoriteListProvider } from "@/hooks/use-favorite-list";
 import ApolloProviderInit from "@/lib/apollo-provider";
 
 const inter = Inter({
@@ -21,9 +22,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <ApolloProviderInit>
-        <body className={`${inter.variable} antialiased`}>
-          <main className="section-container">{children}</main>
-        </body>
+        <FavoriteListProvider>
+          <body className={`${inter.variable} antialiased`}>
+            <main className="section-container">{children}</main>
+          </body>
+        </FavoriteListProvider>
       </ApolloProviderInit>
     </html>
   );
