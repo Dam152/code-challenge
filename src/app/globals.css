@@ -1,1 +1,42 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+html {
+  @apply scroll-smooth text-[62.5%];
+}
+
+body {
+  @apply text-[1.6rem] bg-[#FAFAFA];
+}
+
+@layer components {
+  .primary-link {
+    @apply bg-[#B0C0C8] font-bold text-[1.2rem] text-white rounded-[3px] gap-[4px] h-[20px] w-[114px] justify-center  flex items-center hover:opacity-80 transition-opacity duration-300 ease-linear;
+  }
+
+  .display-large {
+    @apply font-bold text-[4.2rem] text-black;
+  }
+  .headline-small {
+    @apply font-bold text-[1.2rem] text-black;
+  }
+  .body-small {
+    @apply font-normal text-[1rem] text-black;
+  }
+}
+
+.section-container {
+  max-width: min(442px, 100% - 64px);
+  @apply w-full mx-auto py-[26px];
+}
+
+@media screen and (max-width: 768px) {
+  .section-container {
+    max-width: min(688px, 100% - 48px);
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .section-container {
+    max-width: min(688px, 100% - 32px);
+  }
+}
