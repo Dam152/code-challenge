@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { CardMovie } from '@/components/molecules/CardMovie';
-import { CardMovieSkeleton } from '@/components/molecules/CardMovie/CardMovieSkeleton/CardMovieSkeleton';
-import { Pagination } from '@/components/molecules/Pagination/Pagination';
-import { useFavoriteList } from '@/hooks/use-favorite-list';
+import { useState } from "react";
+import { CardMovie } from "@/components/molecules/CardMovie";
+import { CardMovieSkeleton } from "@/components/molecules/CardMovie/CardMovieSkeleton/CardMovieSkeleton";
+import { Pagination } from "@/components/molecules/Pagination/Pagination";
+import { useFavoriteList } from "@/hooks/use-favorite-list";
 
 export function FavoriteTemplate() {
   const { favorites, loading } = useFavoriteList();
