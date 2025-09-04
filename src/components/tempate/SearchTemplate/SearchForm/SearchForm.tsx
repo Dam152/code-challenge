@@ -18,7 +18,6 @@ export function SearchForm() {
     register,
     formState: { errors },
     watch,
-    handleSubmit,
   } = useForm<SearchFormData>({
     resolver: zodResolver(SearchSchema),
   });
