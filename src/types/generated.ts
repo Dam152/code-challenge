@@ -1,6 +1,6 @@
 // biome-ignore-all lint: This is a generated file
 
-import type {
+import {
   GraphQLResolveInfo,
   GraphQLScalarType,
   GraphQLScalarTypeConfig,
@@ -240,6 +240,44 @@ export type GetCharactersQuery = {
       image?: string | null;
       origin?: { __typename?: "Location"; name?: string | null } | null;
     } | null> | null;
+  } | null;
+};
+
+export type GetCharacterQueryVariables = Exact<{
+  id: Scalars["ID"]["input"];
+}>;
+
+export type GetCharacterQuery = {
+  __typename?: "Query";
+  character?: {
+    __typename?: "Character";
+    id?: string | null;
+    name?: string | null;
+    status?: string | null;
+    species?: string | null;
+    gender?: string | null;
+    type?: string | null;
+    image?: string | null;
+    created?: string | null;
+    origin?: {
+      __typename?: "Location";
+      id?: string | null;
+      name?: string | null;
+      dimension?: string | null;
+    } | null;
+    location?: {
+      __typename?: "Location";
+      id?: string | null;
+      name?: string | null;
+      dimension?: string | null;
+    } | null;
+    episode: Array<{
+      __typename?: "Episode";
+      id?: string | null;
+      name?: string | null;
+      episode?: string | null;
+      air_date?: string | null;
+    } | null>;
   } | null;
 };
 

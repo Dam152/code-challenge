@@ -12,7 +12,7 @@ export function ApolloProviderInit({ children }: ApolloProviderProps) {
     link: new HttpLink({
       uri:
         process.env.NEXT_PUBLIC_GRAPHQL_URL ||
-        "https://mttlioitimpeuzlwsgql.supabase.co/graphql/v1",
+        "https://rickandmortyapi.com/graphql",
     }),
 
     cache: new InMemoryCache(),

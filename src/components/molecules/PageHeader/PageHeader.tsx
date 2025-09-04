@@ -16,11 +16,11 @@ export function PageHeader({
   icon = "next",
 }: PageHeaderProps) {
   return (
-    <div className="w-full gap-[16px] flex max-[322px]:gap-[8px] flex-wrap justify-between items-center">
+    <div className="w-full gap-[16px] flex max-[420px]:gap-[8px] flex-wrap justify-between items-center">
       <Text as="h1" className="display-large">
         {text}
       </Text>
-      <div className="flex gap-4 items-center max-[350px]:justify-between max-[350px]:w-full">
+      <div className="flex gap-4 items-center max-[420px]:justify-between max-[420px]:w-full">
         <Link href={"/search"}>
           <IoMdSearch className="w-[18px] h-[18px]" />
         </Link>
