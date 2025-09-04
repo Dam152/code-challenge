@@ -27,12 +27,12 @@ export function Pagination({
             currentPage === 1
               ? "pointer-events-none cursor-not-allowed opacity-50 transition-opacity ease-linear duration-300"
               : "hover:opacity-50 transition-opacity ease-linear duration-300"
-          }`}
+          } body-small`}
         >
           Prev
         </button>
 
-        <span className="flex items-center">
+        <span className="flex items-center body-small">
           {currentPage} / {totalPages}
         </span>
 
@@ -44,7 +44,7 @@ export function Pagination({
             currentPage === totalPages
               ? "pointer-events-none cursor-not-allowed opacity-50 transition-opacity ease-linear duration-300"
               : "hover:opacity-50 transition-opacity ease-linear duration-300"
-          }`}
+          } body-small`}
         >
           Next
         </button>
@@ -60,11 +60,11 @@ export function Pagination({
           data?.characters?.info?.prev
             ? "hover:opacity-50 transition-opacity ease-linear duration-300"
             : "pointer-events-none cursor-not-allowed opacity-50 transition-opacity ease-linear duration-300"
-        }`}
+        } body-small`}
       >
         Prev
       </Link>
-      <span className="flex items-center">
+      <span className="flex items-center body-small">
         {currentPage} / {data?.characters?.info?.pages}
       </span>
       <Link
@@ -73,7 +73,7 @@ export function Pagination({
           data?.characters?.info?.next
             ? "hover:opacity-50 transition-opacity ease-linear duration-300"
             : "pointer-events-none cursor-not-allowed opacity-50 transition-opacity ease-linear duration-300"
-        }`}
+        } body-small`}
       >
         Next
       </Link>

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Toast } from "@/components/molecules/Toast";
 import { FavoriteListProvider } from "@/hooks/use-favorite-list";
+import { ToastProvider } from "@/hooks/use-toast";
 import { ApolloProviderInit } from "@/lib/apollo-provider";
 import "react-loading-skeleton/dist/skeleton.css";
 
@@ -23,11 +25,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <ApolloProviderInit>
-        <FavoriteListProvider>
-          <body className={`${inter.variable} antialiased`}>
-            <main className="section-container">{children}</main>
-          </body>
-        </FavoriteListProvider>
+        <ToastProvider>
+          <FavoriteListProvider>
+            <body className={`${inter.variable} antialiased`}>
+              <main className="section-container">{children}</main>
+              <Toast />
+            </body>
+          </FavoriteListProvider>
+        </ToastProvider>
       </ApolloProviderInit>
     </html>
   );

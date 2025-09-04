@@ -8,6 +8,7 @@ import {
   useState,
 } from "react";
 import type { Character } from "@/types/generated";
+import { useToast } from "./use-toast";
 
 type FavoriteListContextType = {
   favorites: Character[];
@@ -29,6 +30,7 @@ type FavoriteListProviderProps = {
 export function FavoriteListProvider({ children }: FavoriteListProviderProps) {
   const [favorites, setFavorites] = useState<Character[]>([]);
   const [loading, setLoading] = useState(true);
+  const { showToast } = useToast();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -54,14 +56,26 @@ export function FavoriteListProvider({ children }: FavoriteListProviderProps) {
       localStorage.setItem("favoriteList", JSON.stringify(newFavorites));
       return newFavorites;
     });
+
+    setTimeout(() => {
+      showToast(`${character.name} aggiunto ai favoriti!`, "success");
+    }, 0);
   };
 
   const removeFromFavorites = (characterId: string) => {
+    const removedCharacter = favorites.find((char) => char.id === characterId);
+
     setFavorites((prev) => {
       const newFavorites = prev.filter((char) => char.id !== characterId);
       localStorage.setItem("favoriteList", JSON.stringify(newFavorites));
       return newFavorites;
     });
+
+    if (removedCharacter) {
+      setTimeout(() => {
+        showToast(`${removedCharacter.name} rimosso dai favoriti`, "info");
+      }, 0);
+    }
   };
 
   const toggleFavorite = (character: Character) => {
