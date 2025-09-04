@@ -27,7 +27,7 @@ export function Pagination({
             currentPage === 1
               ? "pointer-events-none cursor-not-allowed opacity-50 transition-opacity ease-linear duration-300"
               : "hover:opacity-50 transition-opacity ease-linear duration-300"
-          } body-small`}
+          } body-small cursor-pointer`}
         >
           Prev
         </button>
@@ -44,7 +44,7 @@ export function Pagination({
             currentPage === totalPages
               ? "pointer-events-none cursor-not-allowed opacity-50 transition-opacity ease-linear duration-300"
               : "hover:opacity-50 transition-opacity ease-linear duration-300"
-          } body-small`}
+          } body-small cursor-pointer`}
         >
           Next
         </button>
