@@ -1,7 +1,7 @@
 'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useMemo } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 import * as z from 'zod';
 import { Text } from '@/components/atoms/Text';
