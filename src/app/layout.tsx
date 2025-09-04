@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { FavoriteListProvider } from "@/hooks/use-favorite-list";
-import ApolloProviderInit from "@/lib/apollo-provider";
+import { ApolloProviderInit } from "@/lib/apollo-provider";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const inter = Inter({
   variable: "--font-inter",

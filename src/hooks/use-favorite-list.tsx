@@ -15,6 +15,7 @@ type FavoriteListContextType = {
   removeFromFavorites: (characterId: string) => void;
   toggleFavorite: (character: Character) => void;
   isFavorite: (characterId: string) => boolean;
+  loading: boolean;
 };
 
 const FavoriteListContext = createContext<FavoriteListContextType | undefined>(
@@ -27,6 +28,7 @@ type FavoriteListProviderProps = {
 
 export function FavoriteListProvider({ children }: FavoriteListProviderProps) {
   const [favorites, setFavorites] = useState<Character[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -42,6 +44,7 @@ export function FavoriteListProvider({ children }: FavoriteListProviderProps) {
           localStorage.setItem("favoriteList", JSON.stringify([]));
         }
       }
+      setLoading(false);
     }
   }, []);
 
@@ -82,6 +85,7 @@ export function FavoriteListProvider({ children }: FavoriteListProviderProps) {
     removeFromFavorites,
     toggleFavorite,
     isFavorite,
+    loading,
   };
 
   return (

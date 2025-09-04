@@ -7,7 +7,7 @@ type ApolloProviderProps = {
   children: ReactNode;
 };
 
-export default function ApolloProviderInit({ children }: ApolloProviderProps) {
+export function ApolloProviderInit({ children }: ApolloProviderProps) {
   const client = new ApolloClient({
     link: new HttpLink({
       uri:

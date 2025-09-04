@@ -1,22 +1,56 @@
-"use client";
+'use client';
 
-import { CardMovie } from "@/components/molecules/CardMovie";
-import { useFavoriteList } from "@/hooks/use-favorite-list";
+import { useState } from 'react';
+import { CardMovie } from '@/components/molecules/CardMovie';
+import { CardMovieSkeleton } from '@/components/molecules/CardMovie/CardMovieSkeleton/CardMovieSkeleton';
+import { Pagination } from '@/components/molecules/Pagination/Pagination';
+import { useFavoriteList } from '@/hooks/use-favorite-list';
 
 export function FavoriteTemplate() {
-  const { favorites } = useFavoriteList();
+  const { favorites, loading } = useFavoriteList();
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 19;
 
-  // gestire i loading
+  if (loading) {
+    return (
+      <div className="flex flex-col gap-[19px]">
+        <div className="grid gap-[13px]">
+          {...Array.from({ length: itemsPerPage }).map((_) => (
+            <CardMovieSkeleton key={`skeleton-${Math.random()}`} />
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   if (favorites.length === 0 || !favorites) {
     return <div>Nessun elemento nella lista dei preferiti.</div>;
   }
 
+  const totalPages = Math.ceil(favorites.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentItems = favorites.slice(startIndex, endIndex);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
   return (
-    <div className="grid gap-[13px]">
-      {favorites.map((c) => (
-        <CardMovie key={c.id} card={c} />
-      ))}
+    <div className="flex flex-col gap-[19px]">
+      <div className="grid gap-[13px]">
+        {currentItems.map((c) => (
+          <CardMovie key={c.id} card={c} />
+        ))}
+      </div>
+
+      {totalPages > 1 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
+      )}
     </div>
   );
 }
