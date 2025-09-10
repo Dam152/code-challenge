@@ -1,5 +1,6 @@
 'use client';
 
+import Cookies from 'js-cookie';
 import Link from 'next/link';
 import { useParams, usePathname } from 'next/navigation';
 import type { Locale } from '@/app/dictionaries';
@@ -13,7 +14,9 @@ export function LanguageSwitcher() {
   const newPath = pathname.replace(`/${currentLang}`, `/${nextLang}`);
 
   const handleLanguageChange = () => {
-    document.cookie = `locale=${nextLang}; path=/; max-age=31536000`;
+    Cookies.set('locale', nextLang, {
+      expires: 365,
+    });
   };
 
   return (

@@ -1,10 +1,10 @@
-import type { NextRequest } from 'next/server';
-import { NextResponse } from 'next/server';
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
-const locales = ['it', 'en'];
+const locales = ["it", "en"];
 
 function getLocale(request: NextRequest) {
-  const cookieLocale = request.cookies.get('locale')?.value;
+  const cookieLocale = request.cookies.get("locale")?.value;
   if (cookieLocale && locales.includes(cookieLocale)) {
     return cookieLocale;
   }
@@ -15,7 +15,7 @@ function getLocale(request: NextRequest) {
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const pathnameHasLocale = locales.some(
-    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
   );
 
   if (pathnameHasLocale) return;
@@ -28,5 +28,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next|api|icons|favicon.ico).*)'],
+  matcher: ["/((?!_next|api|icons|favicon.ico).*)"],
 };
