@@ -1,10 +1,10 @@
-import { notFound } from "next/navigation";
-import { CardMovie } from "@/components/molecules/CardMovie";
-import { PageHeader } from "@/components/molecules/PageHeader";
-import { Pagination } from "@/components/molecules/Pagination/Pagination";
-import { getCharacters } from "@/lib/actions/characters";
-import type { Character } from "@/types/generated";
-import { getDictionary, type Locale } from "../dictionaries";
+import { notFound } from 'next/navigation';
+import { CardMovie } from '@/components/molecules/CardMovie';
+import { PageHeader } from '@/components/molecules/PageHeader';
+import { Pagination } from '@/components/molecules/Pagination/Pagination';
+import { getCharacters } from '@/lib/actions/characters';
+import type { Character } from '@/types/generated';
+import { getDictionary, type Locale } from '../dictionaries';
 
 export default async function Home({
   params,
@@ -43,11 +43,11 @@ export default async function Home({
       <PageHeader
         text={homepage.title}
         labelLink={homepage.buttonLabel}
-        href={"/favorites"}
+        href={'/favorites'}
         icon="next"
       />
 
-      <div className="grid gap-[13px]">
+      <div className="grid min-[1440px]:grid-cols-3 gap-[13px]">
         {data?.characters?.results?.map((character) => (
           <CardMovie key={character?.id} card={character as Character} />
         ))}
