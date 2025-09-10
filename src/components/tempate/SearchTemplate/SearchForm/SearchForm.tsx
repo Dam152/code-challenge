@@ -13,7 +13,7 @@ const SearchSchema = z.object({
 
 type SearchFormData = z.infer<typeof SearchSchema>;
 
-export function SearchForm() {
+export function SearchForm({ placeholder }: { placeholder: string }) {
   const {
     register,
     formState: { errors },
@@ -56,7 +56,7 @@ export function SearchForm() {
       <input
         data-testid="search-input"
         type="text"
-        placeholder="Search..."
+        placeholder={placeholder}
         className="border border-gray-500 p-2 rounded w-full"
         {...register("query", {
           required: true,

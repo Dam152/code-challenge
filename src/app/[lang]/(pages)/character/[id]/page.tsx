@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { getDictionary, type Locale } from "@/app/dictionaries";
 import { FavoriteButton } from "@/components/atoms/FavoriteButton";
 import { NextImage } from "@/components/atoms/NextImage";
 import { Text } from "@/components/atoms/Text";
@@ -10,6 +11,7 @@ import type { Character } from "@/types/generated";
 type Params = {
   params: Promise<{
     id: string;
+    lang: Locale;
   }>;
 };
 
@@ -37,20 +39,20 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 }
 
 export default async function page({ params }: Params) {
-  const { id } = await params;
+  const { id, lang } = await params;
   const data = await GetCharacterById(id);
   const character = data?.character;
   if (!character) {
     notFound();
   }
 
-  console.log(character);
+  const characterDictionary = (await getDictionary(lang)).character;
 
   return (
     <div className="grid gap-[19px]">
       <PageHeader
-        text={"Character"}
-        labelLink={"back"}
+        text={characterDictionary.title}
+        labelLink={characterDictionary.buttonLabel}
         href={"/"}
         icon="prev"
       />
@@ -82,7 +84,7 @@ export default async function page({ params }: Params) {
             </div>
           </div>
           <div className="flex flex-col gap-1">
-            <Text as="h2">Origin</Text>
+            <Text as="h2">{characterDictionary.character.originTitle}</Text>
             <Text as="p" className="body-small text-neutral-600">
               {character.origin?.name}
             </Text>
@@ -91,20 +93,21 @@ export default async function page({ params }: Params) {
             </Text>
           </div>
           <div className="flex flex-col gap-1">
-            <Text as="h2">Location</Text>
+            <Text as="h2">{characterDictionary.character.locationTitle}</Text>
             <Text as="p" className="body-small text-neutral-600">
               {character.location?.name}
             </Text>
           </div>
           <div className="flex flex-col gap-1">
-            <Text as="h2">Episodies</Text>
+            <Text as="h2">{characterDictionary.character.episodesTitle}</Text>
             <Text as="p" className="body-small text-neutral-600">
-              {character.episode.length} episodes
+              {character.episode.length}{" "}
+              {characterDictionary.character.episodesTitle}
             </Text>
           </div>
           <div className=" w-full">
             <Text as="p" className=" body-small text-neutral-600">
-              Added to favorites
+              {characterDictionary.addToFavorites}
             </Text>
             <FavoriteButton
               character={character as Character}

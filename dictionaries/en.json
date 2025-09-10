@@ -1,0 +1,41 @@
+{
+  "homepage": {
+    "title": "MOVIES",
+    "buttonLabel": "Favorites"
+  },
+
+  "character": {
+    "title": "CHARACTER",
+    "buttonLabel": "Back",
+    "character": {
+      "originTitle": "Origin",
+      "locationTitle": "Location",
+      "episodesTitle": "Episodies"
+    },
+    "addToFavorites": "Add to favorites"
+  },
+
+  "favorites": {
+    "title": "FAVORITES",
+    "buttonLabel": "Back",
+    "responseNotFound": "No items in the favorites list.",
+    "seo": {
+      "metaTitle": "Favorites",
+      "metaDescription": "Lorem Ipsum"
+    }
+  },
+
+  "search": {
+    "title": "SEARCH",
+    "buttonLabel": "Back",
+    "responseNotFound": {
+      "title": "No results found",
+      "subtitle": "There are no characters matching"
+    },
+    "placeholder": "Search...",
+    "seo": {
+      "metaTitle": "SEARCH",
+      "metaDescription": "Lorem Ipsum"
+    }
+  }
+}

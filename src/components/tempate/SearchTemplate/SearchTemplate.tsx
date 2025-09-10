@@ -9,7 +9,18 @@ import { useSearch } from "@/store/search";
 import type { Character, GetCharactersQuery } from "@/types/generated";
 import { SearchForm } from "./SearchForm/SearchForm";
 
-export function SearchTemplate() {
+type SearchTemplateProps = {
+  responseNotFound: {
+    title: string;
+    subtitle: string;
+  };
+  placeholder: string;
+};
+
+export function SearchTemplate({
+  responseNotFound,
+  placeholder,
+}: SearchTemplateProps) {
   const { searchQuery, updateQuery } = useSearch();
   const [currentPage, setCurrentPage] = useState<number>(1);
   const { data, loading } = useQuery<GetCharactersQuery>(GET_CHARACTERS, {
@@ -33,7 +44,7 @@ export function SearchTemplate() {
   if (loading) {
     return (
       <div className="grid gap-[19px]">
-        <SearchForm />
+        <SearchForm placeholder={placeholder} />
         <div className="w-full flex flex-col gap-[13px]">
           {Array.from({ length: 19 }).map((_) => (
             <CardMovieSkeleton key={`skeleton-search-${Math.random()}`} />
@@ -49,14 +60,14 @@ export function SearchTemplate() {
   ) {
     return (
       <div className="grid gap-[19px]">
-        <SearchForm />
+        <SearchForm placeholder={placeholder} />
         <div className="flex flex-col items-center justify-center py-12 text-center">
           <div className="text-gray-500 text-lg mb-2">
-            Nessun risultato trovato
+            {responseNotFound.title}
           </div>
           {searchQuery && (
             <div className="text-gray-400 text-sm">
-              Non ci sono personaggi che corrispondono a "{searchQuery}"
+              {responseNotFound.subtitle} "{searchQuery}"
             </div>
           )}
         </div>
@@ -66,7 +77,7 @@ export function SearchTemplate() {
 
   return (
     <div className="grid gap-[19px]">
-      <SearchForm />
+      <SearchForm placeholder={placeholder} />
       <div className="w-full flex flex-col gap-[13px]">
         {data?.characters?.results?.map((character) => (
           <CardMovie key={character?.id} card={character as Character} />

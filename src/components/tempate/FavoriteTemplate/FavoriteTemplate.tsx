@@ -6,7 +6,7 @@ import { CardMovieSkeleton } from "@/components/molecules/CardMovie/CardMovieSke
 import { Pagination } from "@/components/molecules/Pagination/Pagination";
 import { useFavoriteList } from "@/hooks/use-favorite-list";
 
-export function FavoriteTemplate() {
+export function FavoriteTemplate({ response }: { response: string }) {
   const { favorites, loading } = useFavoriteList();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 19;
@@ -24,7 +24,7 @@ export function FavoriteTemplate() {
   }
 
   if (favorites.length === 0 || !favorites) {
-    return <div>Nessun elemento nella lista dei preferiti.</div>;
+    return <div>{response}</div>;
   }
 
   const totalPages = Math.ceil(favorites.length / itemsPerPage);

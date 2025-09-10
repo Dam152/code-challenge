@@ -1,0 +1,41 @@
+{
+  "homepage": {
+    "title": "FILMS",
+    "buttonLabel": "Favoriti"
+  },
+
+  "character": {
+    "title": "Personaggio",
+    "buttonLabel": "Indietro",
+    "character": {
+      "originTitle": "Origine",
+      "locationTitle": "Posizione",
+      "episodesTitle": "Episodi"
+    },
+    "addToFavorites": "Aggiungi ai preferiti"
+  },
+
+  "favorites": {
+    "title": "FAVORITI",
+    "buttonLabel": "Indietro",
+    "responseNotFound": "Nessun elemento nella lista dei preferiti.",
+    "seo": {
+      "metaTitle": "Favoriti",
+      "metaDescription": "Lorem Ipsum"
+    }
+  },
+
+  "search": {
+    "title": "RICERCA",
+    "buttonLabel": "Indietro",
+    "responseNotFound": {
+      "title": "Nessun risultato trovato",
+      "subtitle": "Non ci sono personaggi corrispondenti"
+    },
+    "placeholder": "Ricerca...",
+    "seo": {
+      "metaTitle": "Ricerca",
+      "metaDescription": "Lorem Ipsum"
+    }
+  }
+}

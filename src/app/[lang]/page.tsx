@@ -4,15 +4,22 @@ import { PageHeader } from "@/components/molecules/PageHeader";
 import { Pagination } from "@/components/molecules/Pagination/Pagination";
 import { getCharacters } from "@/lib/actions/characters";
 import type { Character } from "@/types/generated";
+import { getDictionary, type Locale } from "../dictionaries";
 
 export default async function Home({
+  params,
   searchParams,
 }: {
+  params: Promise<{
+    lang: Locale;
+  }>;
+
   searchParams: Promise<{
     page?: string;
   }>;
 }) {
   const searchParamsResolved = await searchParams;
+  const { lang } = await params;
   const currentPage = Number(searchParamsResolved.page) || 1;
   const data = await getCharacters(currentPage);
 
@@ -29,11 +36,13 @@ export default async function Home({
     notFound();
   }
 
+  const dictionary = await getDictionary(lang);
+  const homepage = dictionary.homepage;
   return (
     <div className="w-full grid gap-[19px]">
       <PageHeader
-        text={"MOVIES"}
-        labelLink={"Favorites"}
+        text={homepage.title}
+        labelLink={homepage.buttonLabel}
         href={"/favorites"}
         icon="next"
       />
