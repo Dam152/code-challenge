@@ -1,27 +1,32 @@
-import type { NextURL } from "next/dist/server/web/next-url";
-import { NextResponse } from "next/server";
+import type { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
 
-const locales = ["it", "en"];
+const locales = ['it', 'en'];
 
-function getLocale(_request: NextURL) {
+function getLocale(request: NextRequest) {
+  const cookieLocale = request.cookies.get('locale')?.value;
+  if (cookieLocale && locales.includes(cookieLocale)) {
+    return cookieLocale;
+  }
+
   return locales[0];
 }
 
-export function middleware(request: { nextUrl: NextURL | URL }) {
+export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const pathnameHasLocale = locales.some(
-    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
+    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
 
   if (pathnameHasLocale) return;
 
-  const locale = getLocale(request.nextUrl as NextURL);
+  const locale = getLocale(request);
 
-  (request.nextUrl as NextURL).pathname = `/${locale}${pathname}`;
+  request.nextUrl.pathname = `/${locale}${pathname}`;
 
   return NextResponse.redirect(request.nextUrl);
 }
 
 export const config = {
-  matcher: ["/((?!_next|api|icons|favicon.ico).*)"],
+  matcher: ['/((?!_next|api|icons|favicon.ico).*)'],
 };
