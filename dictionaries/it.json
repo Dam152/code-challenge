@@ -37,5 +37,10 @@
       "metaTitle": "Ricerca",
       "metaDescription": "Lorem Ipsum"
     }
+  },
+
+  "toast": {
+    "addedToFavorites": "aggiunto ai favoriti!",
+    "removedFromFavorites": "rimosso dai favoriti"
   }
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import {
   createContext,
   type ReactNode,
@@ -8,6 +9,7 @@ import {
   useState,
 } from "react";
 import type { Character } from "@/types/generated";
+import { getClientDictionary, type Locale } from "@/utils/client-translations";
 import { useToast } from "./use-toast";
 
 type FavoriteListContextType = {
@@ -30,7 +32,9 @@ type FavoriteListProviderProps = {
 export function FavoriteListProvider({ children }: FavoriteListProviderProps) {
   const [favorites, setFavorites] = useState<Character[]>([]);
   const [loading, setLoading] = useState(true);
+  const [dict, setDict] = useState<any>();
   const { showToast } = useToast();
+  const pathName = usePathname();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -47,8 +51,16 @@ export function FavoriteListProvider({ children }: FavoriteListProviderProps) {
         }
       }
       setLoading(false);
+
+      async function getLocaleToast() {
+        const locale = pathName.split("/")[1] as Locale;
+        const dictFetch = (await getClientDictionary(locale)).toast;
+        setDict(dictFetch);
+      }
+
+      getLocaleToast();
     }
-  }, []);
+  }, [pathName]);
 
   const addToFavorites = (character: Character) => {
     setFavorites((prev) => {
@@ -58,7 +70,7 @@ export function FavoriteListProvider({ children }: FavoriteListProviderProps) {
     });
 
     setTimeout(() => {
-      showToast(`${character.name} aggiunto ai favoriti!`, "success");
+      showToast(`${character.name} ${dict.addedToFavorites}`, "success");
     }, 0);
   };
 
@@ -73,7 +85,10 @@ export function FavoriteListProvider({ children }: FavoriteListProviderProps) {
 
     if (removedCharacter) {
       setTimeout(() => {
-        showToast(`${removedCharacter.name} rimosso dai favoriti`, "info");
+        showToast(
+          `${removedCharacter.name} ${dict.removedFromFavorites}`,
+          "info",
+        );
       }, 0);
     }
   };
