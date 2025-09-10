@@ -32,7 +32,10 @@ type FavoriteListProviderProps = {
 export function FavoriteListProvider({ children }: FavoriteListProviderProps) {
   const [favorites, setFavorites] = useState<Character[]>([]);
   const [loading, setLoading] = useState(true);
-  const [dict, setDict] = useState<any>();
+  const [dict, setDict] = useState<{
+    addedToFavorites: string;
+    removedFromFavorites: string;
+  }>();
   const { showToast } = useToast();
   const pathName = usePathname();
 
@@ -70,7 +73,7 @@ export function FavoriteListProvider({ children }: FavoriteListProviderProps) {
     });
 
     setTimeout(() => {
-      showToast(`${character.name} ${dict.addedToFavorites}`, "success");
+      showToast(`${character.name} ${dict?.addedToFavorites}`, "success");
     }, 0);
   };
 
@@ -86,7 +89,7 @@ export function FavoriteListProvider({ children }: FavoriteListProviderProps) {
     if (removedCharacter) {
       setTimeout(() => {
         showToast(
-          `${removedCharacter.name} ${dict.removedFromFavorites}`,
+          `${removedCharacter.name} ${dict?.removedFromFavorites}`,
           "info",
         );
       }, 0);

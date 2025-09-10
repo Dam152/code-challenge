@@ -10,7 +10,7 @@ describe("Favorites functionality", () => {
 
     cy.get('[data-testid="toast"]')
       .should("be.visible")
-      .and("contain.text", "Add to favorites");
+      .and("contain.text", "added to favorites!");
 
     cy.visit("/en/favorites");
     cy.get('[data-testid="movie-card"]').should("exist");
