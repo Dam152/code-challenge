@@ -1,12 +1,12 @@
-import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import { getDictionary, type Locale } from '@/app/dictionaries';
-import { FavoriteButton } from '@/components/atoms/FavoriteButton';
-import { NextImage } from '@/components/atoms/NextImage';
-import { Text } from '@/components/atoms/Text';
-import { PageHeader } from '@/components/molecules/PageHeader';
-import { GetCharacterById } from '@/lib/actions/characters';
-import type { Character } from '@/types/generated';
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { getDictionary, type Locale } from "@/app/dictionaries";
+import { FavoriteButton } from "@/components/atoms/FavoriteButton";
+import { NextImage } from "@/components/atoms/NextImage";
+import { Text } from "@/components/atoms/Text";
+import { PageHeader } from "@/components/molecules/PageHeader";
+import { GetCharacterById } from "@/lib/actions/characters";
+import type { Character } from "@/types/generated";
 
 type Params = {
   params: Promise<{
@@ -27,11 +27,11 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     title: `${process.env.NEXT_APP_NAME} | ${character.name}`,
     description: character.type,
     openGraph: {
-      title: character.name || 'Character',
-      description: character.type || 'Character details',
+      title: character.name || "Character",
+      description: character.type || "Character details",
       images: [
         {
-          url: character.image || '',
+          url: character.image || "",
         },
       ],
     },
@@ -53,14 +53,14 @@ export default async function page({ params }: Params) {
       <PageHeader
         text={characterDictionary.title}
         labelLink={characterDictionary.buttonLabel}
-        href={'/'}
+        href={"/"}
         icon="prev"
       />
       <div className="w-full  flex justify-between gap-8 max-md:flex-col max-md:justify-start">
         <NextImage
-          src={character.image || ''}
-          alt={character.id || ''}
-          title={character.name || ''}
+          src={character.image || ""}
+          alt={character.id || ""}
+          title={character.name || ""}
           fill
           lazy
           className="w-full aspect-square object-cover rounded-[8px] shadow-xl"
@@ -101,7 +101,7 @@ export default async function page({ params }: Params) {
           <div className="flex flex-col gap-1">
             <Text as="h2">{characterDictionary.character.episodesTitle}</Text>
             <Text as="p" className="body-small text-neutral-600">
-              {character.episode.length}{' '}
+              {character.episode.length}{" "}
               {characterDictionary.character.episodesTitle}
             </Text>
           </div>
