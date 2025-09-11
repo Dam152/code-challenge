@@ -1,8 +1,8 @@
-import Link from "next/link";
-import { FavoriteButton } from "@/components/atoms/FavoriteButton";
-import { NextImage } from "@/components/atoms/NextImage";
-import { Text } from "@/components/atoms/Text";
-import type { Character } from "@/types/generated";
+import Link from 'next/link';
+import { FavoriteButton } from '@/components/atoms/FavoriteButton';
+import { NextImage } from '@/components/atoms/NextImage';
+import { Text } from '@/components/atoms/Text';
+import type { Character } from '@/types/generated';
 
 type CardMovieProps = {
   card: Character | null;
@@ -17,9 +17,9 @@ export function CardMovie({ card }: CardMovieProps) {
     >
       <NextImage
         lazy
-        src={card?.image || ""}
-        alt={card?.id || ""}
-        title={card?.name || ""}
+        src={card?.image || ''}
+        alt={card?.id || ''}
+        title={card?.name || ''}
         fill
         className="max-w-[87px] aspect-square w-full rounded-[6px]"
         wrapperStyle="rounded-[6px]"

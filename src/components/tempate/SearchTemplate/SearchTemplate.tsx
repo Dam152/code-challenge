@@ -1,13 +1,13 @@
-"use client";
-import { useQuery } from "@apollo/client/react";
-import { useEffect, useState } from "react";
-import { CardMovie } from "@/components/molecules/CardMovie";
-import { CardMovieSkeleton } from "@/components/molecules/CardMovie/CardMovieSkeleton";
-import { Pagination } from "@/components/molecules/Pagination/Pagination";
-import { GET_CHARACTERS } from "@/queries/characters";
-import { useSearch } from "@/store/search";
-import type { Character, GetCharactersQuery } from "@/types/generated";
-import { SearchForm } from "./SearchForm/SearchForm";
+'use client';
+import { useQuery } from '@apollo/client/react';
+import { useEffect, useState } from 'react';
+import { CardMovie } from '@/components/molecules/CardMovie';
+import { CardMovieSkeleton } from '@/components/molecules/CardMovie/CardMovieSkeleton';
+import { Pagination } from '@/components/molecules/Pagination/Pagination';
+import { GET_CHARACTERS } from '@/queries/characters';
+import { useSearch } from '@/store/search';
+import type { Character, GetCharactersQuery } from '@/types/generated';
+import { SearchForm } from './SearchForm/SearchForm';
 
 type SearchTemplateProps = {
   responseNotFound: {
@@ -33,11 +33,11 @@ export function SearchTemplate({
   const totalPages = data?.characters?.info?.pages ?? 1;
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   useEffect(() => {
-    updateQuery("");
+    updateQuery('');
     setCurrentPage(1);
   }, [updateQuery]);
 
@@ -45,7 +45,7 @@ export function SearchTemplate({
     return (
       <div className="grid gap-[19px]">
         <SearchForm placeholder={placeholder} />
-        <div className="w-full flex flex-col gap-[13px]">
+        <div className="grid-container">
           {Array.from({ length: 19 }).map((_) => (
             <CardMovieSkeleton key={`skeleton-search-${Math.random()}`} />
           ))}
@@ -78,7 +78,7 @@ export function SearchTemplate({
   return (
     <div className="grid gap-[19px]">
       <SearchForm placeholder={placeholder} />
-      <div className="w-full flex flex-col gap-[13px]">
+      <div className="grid-container">
         {data?.characters?.results?.map((character) => (
           <CardMovie key={character?.id} card={character as Character} />
         ))}

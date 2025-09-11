@@ -39,7 +39,7 @@ export default async function Home({
   const dictionary = await getDictionary(lang);
   const homepage = dictionary.homepage;
   return (
-    <div className="w-full grid gap-[19px]">
+    <div className="grid w-full gap-[19px]">
       <PageHeader
         text={homepage.title}
         labelLink={homepage.buttonLabel}
@@ -47,7 +47,7 @@ export default async function Home({
         icon="next"
       />
 
-      <div className="grid min-[1440px]:grid-cols-3 gap-[13px]">
+      <div className="grid-container">
         {data?.characters?.results?.map((character) => (
           <CardMovie key={character?.id} card={character as Character} />
         ))}

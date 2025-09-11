@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 html {
   @apply scroll-smooth text-[62.5%];
@@ -24,25 +24,29 @@ body {
   }
 }
 
+.grid-container {
+  @apply grid min-[1370px]:grid-cols-3 min-[960px]:grid-cols-2 gap-[13px];
+}
+
 .section-container {
-  max-width: min(768px, 100% - 64px);
+  max-width: min(1370px, 100% - 64px);
   @apply w-full mx-auto py-[26px];
 }
 
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 1370px) {
   .section-container {
-    max-width: min(442px, 100% - 64px);
+    max-width: min(1370px, 100% - 64px);
     @apply w-full mx-auto py-[26px];
   }
 }
 @media screen and (max-width: 768px) {
   .section-container {
-    max-width: min(688px, 100% - 48px);
+    max-width: min(1370px, 100% - 48px);
   }
 }
 
 @media screen and (max-width: 640px) {
   .section-container {
-    max-width: min(688px, 100% - 32px);
+    max-width: min(442px, 100% - 32px);
   }
 }

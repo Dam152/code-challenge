@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { CardMovie } from "@/components/molecules/CardMovie";
-import { CardMovieSkeleton } from "@/components/molecules/CardMovie/CardMovieSkeleton/CardMovieSkeleton";
-import { Pagination } from "@/components/molecules/Pagination/Pagination";
-import { useFavoriteList } from "@/hooks/use-favorite-list";
+import { useState } from 'react';
+import { CardMovie } from '@/components/molecules/CardMovie';
+import { CardMovieSkeleton } from '@/components/molecules/CardMovie/CardMovieSkeleton/CardMovieSkeleton';
+import { Pagination } from '@/components/molecules/Pagination/Pagination';
+import { useFavoriteList } from '@/hooks/use-favorite-list';
 
 export function FavoriteTemplate({ response }: { response: string }) {
   const { favorites, loading } = useFavoriteList();
@@ -14,7 +14,7 @@ export function FavoriteTemplate({ response }: { response: string }) {
   if (loading) {
     return (
       <div className="flex flex-col gap-[19px]">
-        <div className="grid gap-[13px]">
+        <div className="grid-container">
           {...Array.from({ length: itemsPerPage }).map((_) => (
             <CardMovieSkeleton key={`skeleton-${Math.random()}`} />
           ))}
@@ -38,7 +38,7 @@ export function FavoriteTemplate({ response }: { response: string }) {
 
   return (
     <div className="flex flex-col gap-[19px]">
-      <div className="grid min-[1440px]:grid-cols-3 gap-[13px]">
+      <div className="grid-container">
         {currentItems.map((c) => (
           <CardMovie key={c.id} card={c} />
         ))}
