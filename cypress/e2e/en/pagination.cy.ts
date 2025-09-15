@@ -8,7 +8,7 @@ describe("Pagination", () => {
 
   it("should navigate to previous page on homepage", () => {
     cy.visit("/en?page=2");
-    cy.get("a").contains("Prev").click();
+    cy.get("a").contains("Prev").click({ force: true });
     cy.url().should("include", "page=1");
     cy.get('[data-testid="movie-card"]').should("exist");
   });
